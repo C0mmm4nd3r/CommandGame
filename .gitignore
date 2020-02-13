@@ -1,0 +1,5 @@
+*.exe 
+*.config 
+*.conf 
+*.log
+env.json
