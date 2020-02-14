@@ -9,14 +9,19 @@ class DirTree:
     def GetSavedDir():
         pass 
 
-    def SaveDir(current_dir):
+    def SaveDir():
         pass 
 
-    def AddDir(current_dir):
+    def AddDir():
         pass
 
-    def RmDir(current_dir): 
+    def RmDir(): 
         pass 
 
     def GetCurrentDir():
         pass 
+
+    def MvDir():
+        pass 
+
+    def CpDir():
