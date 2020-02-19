@@ -68,5 +68,12 @@
 		"modtime": "2020-02-19 23:48:47",
 		"dir_type": "dir",
 		"parent": "/home/tuuna"
+	},
+	"/home/tuuna/readme": {
+		"owner": "tuuna",
+		"crtime": "2020-02-20 00:29:23",
+		"modtime": "2020-02-20 00:29:23",
+		"dir_type": "dir",
+		"parent": "/home/tuuna"
 	}
 }

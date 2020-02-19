@@ -1,0 +1,12 @@
+{
+  "ip": "192.202.102.32",
+  "port" : [21, 22, 53, 80, 443, 3306, 4321, 8080, 9008],
+  "ftp_service" : false,
+  "ssh_service" : false,
+  "mysql_service" : false,
+  "apache2_service" : false,
+  "dns_service" : false,
+  "payload_service" : true,
+  "mac_address" : "ab:12:c4:d8:e7:bd",
+  "interface" : "eth0"
+}

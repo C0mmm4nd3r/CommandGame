@@ -8,6 +8,13 @@ class CmFunc:
     def __init__(self):
         pass
 
+    def make_fullpath(self, userinfo, path):
+        path = "".join(path)
+        if path[0] == '/':
+            return path
+        else:
+            return userinfo['currloc']+'/'+path
+
     def ls_func(self):
         pass
 
@@ -15,11 +22,7 @@ class CmFunc:
         pass
 
     def rm_func(self, dirObj, userinfo, path):
-        path = "".join(path)
-        if path[0] == '/':
-            full_path = path
-        else:
-            full_path = userinfo['currloc']+'/'+path
+        full_path = self.make_fullpath(userinfo, path[1:])
         if not(full_path in dirObj.DirInfo):
             return False
         #if userinfo['permission'] < dirObj.DirInfo['permission']:
@@ -30,11 +33,7 @@ class CmFunc:
 #mkdir /home/tuuna/level1
 #mkdir test/level1   ### 맨앞에 /가 있다면 절대, 없다면 상대 current_location을 붙인다.
     def mkdir_func(self, dirObj, userinfo, path):
-        path = "".join(path)
-        if path[0] == '/': #절대경로
-            full_path = path
-        else:
-            full_path = userinfo['currloc'] + '/' + path
+        full_path = self.make_fullpath(userinfo, path[1:])
         if full_path in dirObj.DirInfo:
             return False
         #if userinfo['permission'] < dirObj.DirInfo['permission']:
@@ -55,11 +54,21 @@ class CmFunc:
     def scp_func(self):
         pass
 
-    def ifconfig_func(self):
-        pass
+    def ifconfig_func(self, systeminfo):
+        output = '''
+{}: flag=3213<UP, BORADCAST, RUNNING, MULTICAST> mtu 1500
+inet {} netmask 255.255.255.0 boardcast 192.202.102.255
+ehter {} txqueuelen 100 (Ethernet)
+        '''.format(systeminfo['interface'], systeminfo['ip'], systeminfo['mac_address'])
+        print(output)
+        return output
 
-    def cd_func(self):
-        pass
+    def cd_func(self, dirObj, userinfo, path):
+        full_path = self.make_fullpath(userinfo, path[1:])
+        if not(full_path in dirObj.DirInfo):
+            return False
+        userinfo['currinfo'] = full_path
+        return True
 
     def file_func(self):
         pass
