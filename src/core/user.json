@@ -1,0 +1,10 @@
+{
+  "username":"tuuna",
+  "permission":"tuuna",
+  "exp":0,
+  "money":0,
+  "PossibleCommand":["ls", "rm"],
+  "Achivement":0,
+  "home_folder":"/home/tuuna",
+  "currloc" : "/home/tuuna"
+}

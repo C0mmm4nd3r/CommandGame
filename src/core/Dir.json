@@ -1,65 +1,72 @@
 {
-  "/":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "top"
-  },
-  "root":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "bin":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "boot":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "var":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "log":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "mail":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "home" :{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "/"
-  },
-  "tuuna":{
-    "owner" : "root",
-    "crtime" : "2020-02-17 19:03:01",
-    "modtime" : "2020 20:02:19",
-    "dir_type" : "dir",
-    "parent" : "home"
-  }
+	"/": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "*"
+	},
+	"/root": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/bin": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/boot": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/var": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/log": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/mail": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/home": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/"
+	},
+	"/home/tuuna": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020 20:02:19",
+		"dir_type": "dir",
+		"parent": "/home"
+	},
+	"/home/tuuna/good_folder": {
+		"owner": "tuuna",
+		"crtime": "2020-02-19 23:48:47",
+		"modtime": "2020-02-19 23:48:47",
+		"dir_type": "dir",
+		"parent": "/home/tuuna"
+	}
 }

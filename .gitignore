@@ -3,3 +3,5 @@
 *.conf 
 *.log
 env.json
+__pycache__
+*.pyc
