@@ -8,6 +8,7 @@ from PyQt5 import uic
  
 Practice_UI = uic.loadUiType('practice.ui')[0]
 flags = {0: "PyQt", 1: "바보"}
+
 class GameMaking(QMainWindow, Practice_UI):
     def __init__(self):
         super().__init__()
@@ -55,25 +56,26 @@ class GameMaking(QMainWindow, Practice_UI):
 
     #flag 체크
     def chkflag(self):
-
-        if flags.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == self.childLineEdit.text():
+        if flags.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text():
             self.eventtree.currentItem().parent().setText(0, 'Clear!')
             self.eventtree.currentItem().setHidden(True)
-            self.childLineEdit.clear()
+            getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).clear()
             self.status.setText(str(int(self.status.text())+1))
 
     #Quest 추가
     def AddQuest(self):
         self.root = self.eventtree.invisibleRootItem()
+        mod = sys.modules[__name__]
 
         tmp = QTreeWidgetItem()
         sub_tmp = QTreeWidgetItem()
 
-        self.childLineEdit = QLineEdit()
+        setattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount()),QLineEdit())
+
         tmp.setText(0,'Quest')
 
         tmp.addChild(sub_tmp)
-        self.eventtree.setItemWidget(sub_tmp,0,self.childLineEdit)
+        self.eventtree.setItemWidget(sub_tmp,0, getattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount())))
         self.root.addChild(tmp)
 
 if __name__ == "__main__" :
