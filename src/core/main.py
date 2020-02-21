@@ -1,9 +1,13 @@
 from core import Core
 
+def login(Handler):
+    username = input("input username : ")
+    password = input("input user password : ")
+    return Handler.UserSetting(username, password)
 
 if __name__ == "__main__":
     Handler = Core()
-    Handler.Handler('mkdir /home/tuuna/good_folder')
-    Handler.Handler('rm /home/tuuna/level1')
-    Handler.Handler('mkdir /home/tuuna/readme')
-    Handler.Handler('ifconfig')
+    if login(Handler):
+        Handler.Handler()
+    else:
+        print("login error")

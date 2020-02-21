@@ -27,23 +27,38 @@ class DirTree:
             modtime = self.DirInfo[name]['modtime']
             dir_type = self.DirInfo[name]['dir_type']
             parent = self.DirInfo[name]['parent']
-            self.DirNode[name] = Node(name, parent=self.DirNode[parent], owner=owner, crtime=crtime, modtime=modtime, type=dir_type)
+            content = self.DirInfo[name]['content']
+            self.DirNode[name] = Node(name, parent=self.DirNode[parent], owner=owner, crtime=crtime, modtime=modtime, dir_type=dir_type, content=content)
         return
 
-    def PrintDir(self):
-        for pre, _, node in RenderTree(self.TopParent):
-            print("%s%s"%(pre, node.name))
-        return
+    def ls_dir(self, parent_path):
+        output = ''
+        for name in self.DirInfo:
+            if self.DirInfo[name]['parent'] != parent_path:
+                continue
+            else:
+                output += "{} {} {} {}".format(self.DirInfo[name]['dir_type'],self.DirInfo[name]['owner'], self.DirInfo[name]['modtime'], name) + '\n'
+        return output
+
+    def PrintDir(self, path):
+        if path not in self.DirInfo:
+            return False
+        output = ''
+        path_node = self.DirNode[path]
+        for pre, _, node in RenderTree(path_node):
+            output += "%s%s"%(pre, node.name) + '\n'
+            #print("%s%s"%(pre, node.name))
+        return output
 
     def SaveDir(self):
         with open('Dir.json', 'w',encoding='utf-8') as dump_json:
             json.dump(self.DirInfo, dump_json, indent="\t")
         #loggy.info("Directory Json Saved")
-        return
+        return True
 
-    def AddDir(self, full_path, crtime, modtime, dir_type, parent, owner): #need current location and current location will be parent node
-        self.DirNode[full_path] = Node(full_path, parent=self.DirNode[parent], owner=owner, crtime=crtime, modtime=modtime, type=dir_type)
-        self.DirInfo[full_path] = {'owner':owner, 'crtime':crtime, 'modtime':modtime, 'dir_type':dir_type, 'parent':parent}
+    def AddDir(self, full_path, crtime, modtime, dir_type, parent, owner, content): #need current location and current location will be parent node
+        self.DirNode[full_path] = Node(full_path, parent=self.DirNode[parent], owner=owner, crtime=crtime, modtime=modtime, dir_type=dir_type, content=content)
+        self.DirInfo[full_path] = {'owner':owner, 'crtime':crtime, 'modtime':modtime, 'dir_type':dir_type, 'parent':parent, 'content':content}
         #loggy.info("Add Directtory(Parent : {})".format(parent))
         self.SaveDir() #must to record parent node is absolutely location
         return

@@ -4,76 +4,103 @@
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "*"
+		"parent": "*",
+		"content": "*"
 	},
 	"/root": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/bin": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": ""
 	},
 	"/boot": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/var": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/log": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/mail": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/home": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/"
+		"parent": "/",
+		"content": "*"
 	},
 	"/home/tuuna": {
-		"owner": "root",
-		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
-		"dir_type": "dir",
-		"parent": "/home"
-	},
-	"/home/tuuna/good_folder": {
 		"owner": "tuuna",
-		"crtime": "2020-02-19 23:48:47",
-		"modtime": "2020-02-19 23:48:47",
+		"crtime": "2020-02-20 19:53:38",
+		"modtime": "2020-02-20 19:53:38",
 		"dir_type": "dir",
-		"parent": "/home/tuuna"
+		"parent": "/home",
+		"content": "*"
 	},
-	"/home/tuuna/readme": {
+	"/home/tuuna/level2": {
 		"owner": "tuuna",
-		"crtime": "2020-02-20 00:29:23",
-		"modtime": "2020-02-20 00:29:23",
+		"crtime": "2020-02-21 00:26:10",
+		"modtime": "2020-02-21 00:26:10",
 		"dir_type": "dir",
-		"parent": "/home/tuuna"
+		"parent": "/home/tuuna",
+		"content": "*"
+	},
+	"/home/tuuna/test_folder": {
+		"owner": "tuuna",
+		"crtime": "2020-02-21 01:03:52",
+		"modtime": "2020-02-21 01:03:52",
+		"dir_type": "dir",
+		"parent": "/home/tuuna",
+		"content": "*"
+	},
+	"/home/tuuna/level1": {
+		"owner": "tuuna",
+		"crtime": "2020-02-21 19:23:25",
+		"modtime": "2020-02-21 19:23:25",
+		"dir_type": "dir",
+		"parent": "/home/tuuna",
+		"content": "*"
+	},
+	"/home/tuuna/test": {
+		"owner": "tuuna",
+		"crtime": "2020-02-21 19:33:18",
+		"modtime": "2020-02-21 19:33:18",
+		"dir_type": "dir",
+		"parent": "/home/tuuna",
+		"content": "*"
 	}
 }

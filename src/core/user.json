@@ -1,10 +1,14 @@
 {
-  "username":"tuuna",
-  "permission":"tuuna",
-  "exp":0,
-  "money":0,
-  "PossibleCommand":["ls", "rm"],
-  "Achivement":0,
-  "home_folder":"/home/tuuna",
-  "currloc" : "/home/tuuna"
+	"success_setup": true,
+	"username": "tuuna",
+	"password": "test12345",
+	"PossibleCommand": [
+		"ls",
+		"rm"
+	],
+	"exp": 0,
+	"money": 0,
+	"home_folder": "/home/tuuna",
+	"currloc": "/home/tuuna",
+	"permission": "tuuna"
 }
