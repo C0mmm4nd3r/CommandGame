@@ -143,7 +143,8 @@ ehter {} txqueuelen 100 (Ethernet)
         pass
 
     def whoami_func(self, component, argument_list):
-        pass
+        userinfo = component['userinfo']
+        return "your permission is {}".format(userinfo['permission'])
 
     def ps_func(self, component, argument_list):
         pass

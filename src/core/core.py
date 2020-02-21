@@ -4,12 +4,15 @@ import json
 from manage_dir import DirTree
 from CommandFunction import CmFunc
 from event import EventTrigger
+from store import Store
 
 class Core:
     def __init__(self):
         self.cmfunc = CmFunc()
         self.dir = DirTree()
         self.dir.GetSavedDir()
+        self.event = EventTrigger()
+        self.store = Store()
         self.PossibleCommand = {
             "mkdir":self.cmfunc.mkdir_func,
             "ifconfig":self.cmfunc.ifconfig_func,
@@ -32,9 +35,11 @@ class Core:
 
     #first calling time
     def UserSetting(self, username, password):
+        first = False
         with open('user.json') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['success_setup'] == False:
+            first = True
             user_setting = {}
             user_setting['success_setup'] = True
             user_setting['username'] = username
@@ -52,6 +57,8 @@ class Core:
         if not((userinfo['username'] == username) and (userinfo['password'] == password)):
             return False #login errro
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
+        if first == True:
+            self.Tutorial()
         return True
 
     def GetUserInfo(self):
@@ -61,7 +68,7 @@ class Core:
             self.systeminfo = json.load(systemJson)
         with open('game_data.json') as gameJson:
             self.game_data = json.load(gameJson)
-        self.permission = {self.userinfo['username']:0, 'root':1}
+        self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0, 'super_attacker':1}
         self.history = []
         self.component = {'sysinfo':self.systeminfo, 'userinfo':self.userinfo, 'dirObj':self.dir, 'permission':self.permission, 'history':self.history}
         return True
@@ -78,6 +85,30 @@ class Core:
         else:
             return "Command not found: {}".format(self.command[0])
         return output
+
+    #tutorial이 끝나야 success_setup이 true가 되게하자.
+    def Tutorial(self):
+        print("\nStart Tutorial For NewBie!")
+        print("\nFirst check your permission, plz input 'whoami'")
+        command = input(self.OutputDefault())
+        while command != 'whoami':
+            print("plz input 'whoami'")
+            command = input(self.OutputDefault())
+        output = self.cmfunc.whoami_func(self.component, command.split)
+        print('\n'+output+'\nCongratuation! this result is your current permission\n')
+
+        print("\nNext, print now location, plz input 'pwd'")
+        command = input(self.OutputDefault())
+        while command != 'pwd':
+            print("plz input 'pwd'")
+            command = input(self.OutputDefault())
+        output = self.cmfunc.pwd_func(self.component, command.split)
+        print('\n'+output+'\nCongratuation! this result is your current location'+'\n')
+
+        userinfo = self.component['userinfo']
+        print("\nFinished Tutorial Thanks {}! System give {} exp and {} money for you!".format(userinfo['username'], 200, 1000))
+        print("Enjoy Linux Command Game!\n")
+        return True
 
     def Handler(self):
         while True:

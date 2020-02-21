@@ -32,7 +32,7 @@ class DirTree:
         return
 
     def ls_dir(self, parent_path):
-        output = ''
+        output = '\n'
         for name in self.DirInfo:
             if self.DirInfo[name]['parent'] != parent_path:
                 continue
