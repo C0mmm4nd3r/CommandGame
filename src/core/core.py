@@ -29,16 +29,16 @@ class Core:
         self.TutorialList = {}
 
     def SaveData(self):
-        with open('user.json', 'w', encoding='utf-8') as userdump:
+        with open('json/user.json', 'w', encoding='utf-8') as userdump:
             json.dump(self.userinfo, userdump, indent='\t')
-        with open('system.json', 'w', encoding='utf-8') as systemdump:
+        with open('json/system.json', 'w', encoding='utf-8') as systemdump:
             json.dump(self.systeminfo, systemdump, indent='\t')
-        with open('game_data.json', 'w', encoding='utf-8') as gamedump:
+        with open('json/game_data.json', 'w', encoding='utf-8') as gamedump:
             json.dump(self.game_data, gamedump, indent='\t')
 
     #first calling time
     def UserSetting(self, username, password):
-        with open('user.json') as userJson:
+        with open('json/user.json') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['success_setup'] == False:
             self.CheckTutorial = True
@@ -62,11 +62,11 @@ class Core:
         return True
 
     def GetUserInfo(self):
-        with open('user.json') as userJson:
+        with open('json/user.json') as userJson:
             self.userinfo = json.load(userJson)
-        with open('system.json') as systemJson:
+        with open('json/system.json') as systemJson:
             self.systeminfo = json.load(systemJson)
-        with open('game_data.json') as gameJson:
+        with open('json/game_data.json') as gameJson:
             self.game_data = json.load(gameJson)
         self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0, 'super_attacker':1}
         self.history = []

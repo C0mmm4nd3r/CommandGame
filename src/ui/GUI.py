@@ -1,5 +1,6 @@
 import sys
- 
+sys.path.append('../')
+from core import Core
 import PyQt5
 from PyQt5.QtGui import *
 from PyQt5.QtCore import *
@@ -11,12 +12,14 @@ flags = {0: "PyQt", 1: "바보"}
 
 class GameMaking(QMainWindow, Practice_UI):
     def __init__(self):
+        self.core = Core()
+        self.core.UserSetting('tuuna', '1234')
         super().__init__()
         self.setUI()
         self.InputBox.returnPressed.connect(self.commandline)
         self.Accept.clicked.connect(self.AddQuest)
         self.Submit.clicked.connect(self.chkflag)
-        self.pwd.setText('경로/')
+        self.pwd.setText(self.core.OutputDefault())
 
     def setUI(self):
         self.setupUi(self)
@@ -41,8 +44,10 @@ class GameMaking(QMainWindow, Practice_UI):
 
 
     def commandline(self):
-        self.OutputBox.append(self.pwd.text() + self.InputBox.text())
+        command = self.InputBox.text()
+        self.OutputBox.append(self.pwd.text()+command+self.core.ExecuteCommand(command))
         self.InputBox.clear()
+        self.pwd.setText(self.core.OutputDefault())
         
 
 

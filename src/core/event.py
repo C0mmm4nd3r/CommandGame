@@ -2,7 +2,7 @@ import json
 
 class EventTrigger:
     def __init__(self):
-        with open('event_list.json') as eventdump:
+        with open('json/event_list.json') as eventdump:
             self.event = json.load(eventdump)
 
     def make_event(self, component):
