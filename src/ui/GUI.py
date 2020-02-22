@@ -16,6 +16,7 @@ class GameMaking(QMainWindow, Practice_UI):
         self.InputBox.returnPressed.connect(self.commandline)
         self.Accept.clicked.connect(self.AddQuest)
         self.Submit.clicked.connect(self.chkflag)
+        self.pwd.setText('경로/')
 
     def setUI(self):
         self.setupUi(self)
@@ -40,8 +41,10 @@ class GameMaking(QMainWindow, Practice_UI):
 
 
     def commandline(self):
-        self.OutputBox.append(self.InputBox.text())
+        self.OutputBox.append(self.pwd.text() + self.InputBox.text())
         self.InputBox.clear()
+        
+
 
 # 리스트 flag체크
 
@@ -56,6 +59,8 @@ class GameMaking(QMainWindow, Practice_UI):
 
     #flag 체크
     def chkflag(self):
+        if not(self.eventtree.currentItem().parent()):
+            return 0
         if flags.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text():
             self.eventtree.currentItem().parent().setText(0, 'Clear!')
             self.eventtree.currentItem().setHidden(True)
@@ -65,7 +70,6 @@ class GameMaking(QMainWindow, Practice_UI):
     #Quest 추가
     def AddQuest(self):
         self.root = self.eventtree.invisibleRootItem()
-        mod = sys.modules[__name__]
 
         tmp = QTreeWidgetItem()
         sub_tmp = QTreeWidgetItem()
