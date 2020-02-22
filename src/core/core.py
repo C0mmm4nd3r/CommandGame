@@ -23,6 +23,8 @@ class Core:
             "tree":self.cmfunc.tree_func,
             "history":self.cmfunc.history_func,
             "ls":self.cmfunc.ls_func,
+            'touch':self.cmfunc.touch_func,
+            'cat':self.cmfunc.cat_func,
         }
 
     def SaveData(self):
@@ -86,6 +88,20 @@ class Core:
             return "Command not found: {}".format(self.command[0])
         return output
 
+    #gui 측면에서 Event를 가지려할 때 이 함수 호출
+    def GetEvent(self):
+        pass
+
+
+    def Handler(self):
+        while True:
+            command = input(self.OutputDefault())
+            self.component['history'].append(command)
+            self.command = command.split()
+            print(self.ExecuteCommand())
+            #return self.ExecuteCommand()
+
+
     #tutorial이 끝나야 success_setup이 true가 되게하자.
     def Tutorial(self):
         print("\nStart Tutorial For NewBie!")
@@ -109,11 +125,3 @@ class Core:
         print("\nFinished Tutorial Thanks {}! System give {} exp and {} money for you!".format(userinfo['username'], 200, 1000))
         print("Enjoy Linux Command Game!\n")
         return True
-
-    def Handler(self):
-        while True:
-            command = input(self.OutputDefault())
-            self.component['history'].append(command)
-            self.command = command.split()
-            print(self.ExecuteCommand())
-            #return self.ExecuteCommand()

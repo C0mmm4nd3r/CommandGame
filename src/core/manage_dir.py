@@ -53,15 +53,21 @@ class DirTree:
     def SaveDir(self):
         with open('Dir.json', 'w',encoding='utf-8') as dump_json:
             json.dump(self.DirInfo, dump_json, indent="\t")
-        #loggy.info("Directory Json Saved")
+        #저장했으면 그 내용을 다시 불러온다.
+        with open('Dir.json') as DirJson:
+            self.DirInfo = json.load(DirJson)
+        self.GetSavedDir()
         return True
 
     def AddDir(self, full_path, crtime, modtime, dir_type, parent, owner, content): #need current location and current location will be parent node
         self.DirNode[full_path] = Node(full_path, parent=self.DirNode[parent], owner=owner, crtime=crtime, modtime=modtime, dir_type=dir_type, content=content)
         self.DirInfo[full_path] = {'owner':owner, 'crtime':crtime, 'modtime':modtime, 'dir_type':dir_type, 'parent':parent, 'content':content}
         #loggy.info("Add Directtory(Parent : {})".format(parent))
-        self.SaveDir() #must to record parent node is absolutely location
+        self.SaveDir() #must to record parent node is absolutely location and getdir
         return
+
+    def CatDir(self, path):
+        return '\n'+self.DirInfo[path][content]
 
 # 삭제 후 저장
     def RmDir(self, full_path):

@@ -53,9 +53,22 @@ class CmFunc:
         userinfo = component['userinfo']
         return userinfo['currloc']
 
+    def cat_func(self, component, argument_list):
+        if len(argument_list) != 2:
+            return "cat command need one argument"
+        userinfo = component['userinfo']
+        full_path = self.make_fullpath(userinfo, argument_list[1])
+        if not(full_path in component['dirObj'].DirInfo):
+            return "Don't existed folder or file"
+        if not(self.CheckPermission(component, full_path)):
+            return "Permission Denied"
+        if component['dirObj'].DirInfo[full_path]['dir_type'] == 'dir':
+            return "this is dir"
+        return component['dirObj'].CatDir(full_path)
+
     def rm_func(self, component,argument_list):
-        if len(argument_list) == 1:
-            return "need one more argument"
+        if len(argument_list) != 2:
+            return "rm command need one argument"
         full_path = self.make_fullpath(component['userinfo'], argument_list[1])
         if not(full_path in component['dirObj'].DirInfo):
             return "Don't existed folder or file"
@@ -64,11 +77,7 @@ class CmFunc:
         component['dirObj'].RmDir(full_path)
         return ''
 
-
-    def mkdir_func(self, component, argument_list):
-        if len(argument_list) == 1:
-            return "need one more argument"
-        path = argument_list[1]
+    def mkdir_touch(self, component, path, dir_type, content):
         full_path = self.make_fullpath(component['userinfo'], path)
         if full_path in component['dirObj'].DirInfo:
             return "Already exist"
@@ -80,14 +89,24 @@ class CmFunc:
             return "Permission Denied"
 
         if parent in component['dirObj'].DirInfo:
-            dir_type = 'dir'
             crtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             modtime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             owner = userinfo['username']
-            component['dirObj'].AddDir(full_path, crtime, modtime, dir_type, parent, owner, "*")
+            component['dirObj'].AddDir(full_path, crtime, modtime, dir_type, parent, owner, content)
         else:
             return "Don't exist folder {}".format(parent)
         return ""
+
+    def touch_func(self, component, argument_list):
+        if len(argument_list) != 2:
+            return "touch command need one argument"
+        return self.mkdir_touch(component, argument_list[1], 'file', '')
+
+    def mkdir_func(self, component, argument_list):
+        if len(argument_list) != 2:
+            return "mkdir command need one argument"
+        return self.mkdir_touch(component, argument_list[1], 'dir', '*')
+
 
 
     def tree_func(self, component, argument_list):
@@ -125,19 +144,25 @@ ehter {} txqueuelen 100 (Ethernet)
             return "Don't exist folder"
         if component['dirObj'].DirInfo[full_path]['dir_type'] == 'file':
             return "This is file"
-        userinfo = component['userinfo']
         userinfo['currloc'] = full_path
         return ""
         #return userinfo['currloc']
 
-    def file_func(self, component, argument_list):
-        pass
-
     def cp_func(self, component, argument_list):
-        pass
+        if len(argument_list) != 3:
+            return "cp command need 2 argument"
+        userinfo = component['userinfo']
+        src_fullpath = self.make_fullpath(userinfo, argument_list[1])
+        dst_fullpath = self.make_fullpath(userinfo, argument_list[2])
+        if src_fullpath not in component['dirObj'].DirInfo:
+            return "Don't exist folder or file"
+        if not(self.CheckPermission(component, src_fullpath)):
+            return "Permission Denied"
+        if component['dirObj'].DirInfo[src_fullpath]['dir_type'] == 'dir':
+            return "sorry we will update this"
+        else:
+            pass
 
-    def cat_func(self, component, argument_list):
-        pass
 
     def editor_func(self, component, argument_list):
         pass
@@ -171,8 +196,6 @@ ehter {} txqueuelen 100 (Ethernet)
     def nc_func(self, component, argument_list):
         pass
 
-    def touch_func(self, component, argument_list):
-        pass
 
     def netstat_func(self, component, argument_list):
         pass
