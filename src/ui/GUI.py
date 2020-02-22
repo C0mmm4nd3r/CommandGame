@@ -22,10 +22,10 @@ class GameMaking(QMainWindow, Practice_UI):
         self.setupUi(self)
 
         #OutputBox 배경설정
-        qPixmapVar = QPixmap()
-        qPixmapVar.load('lobto.png')
-        qPixmapVar = qPixmapVar.scaledToWidth(140)
-        self.label.setPixmap(qPixmapVar)
+        # qPixmapVar = QPixmap()
+        # qPixmapVar.load('lobto.png')
+        # qPixmapVar = qPixmapVar.scaledToWidth(140)
+        # self.label.setPixmap(qPixmapVar)
 
         self.status.setText('0')
 
