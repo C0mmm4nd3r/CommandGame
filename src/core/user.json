@@ -1,0 +1,15 @@
+{
+	"success_setup": true,
+	"username": "tuuna",
+	"password": "1234",
+	"PossibleCommand": [
+		"ls",
+		"rm",
+		"mkdir"
+	],
+	"exp": 0,
+	"money": 0,
+	"home_folder": "/home/tuuna",
+	"currloc": "/home/tuuna",
+	"permission": "tuuna"
+}
