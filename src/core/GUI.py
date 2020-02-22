@@ -30,7 +30,6 @@ class GameMaking(QMainWindow, Practice_UI):
         self.label.setPixmap(qPixmapVar)
 
         self.status.setText('0')
-
         #event관리 list ver
         # self.eventlist.addItem('test1')
         # self.eventlist.addItem('test2')
@@ -39,6 +38,11 @@ class GameMaking(QMainWindow, Practice_UI):
 
 
         #self.eventtree.itemClicked.connect(lambda : self.chkflag(sub_test))
+
+    def Tutorial(self):
+        level1 = QMessageBox.information(
+            self, 'Tutorial', 'whoami 명령어를 입력해보세요.', QMessageBox.Yes
+        )
 
 
 
@@ -90,4 +94,5 @@ if __name__ == "__main__" :
     app = QApplication(sys.argv)
     main_window = GameMaking()
     main_window.show()
+    main_window.Tutorial()
     sys.exit(app.exec_())

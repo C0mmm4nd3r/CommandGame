@@ -25,6 +25,8 @@ class Core:
             'touch':self.cmfunc.touch_func,
             'cat':self.cmfunc.cat_func,
         }
+        self.CheckTutorial = False
+        self.TutorialList = {}
 
     def SaveData(self):
         with open('user.json', 'w', encoding='utf-8') as userdump:
@@ -36,11 +38,10 @@ class Core:
 
     #first calling time
     def UserSetting(self, username, password):
-        first = False
         with open('user.json') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['success_setup'] == False:
-            first = True
+            self.CheckTutorial = True
             user_setting = {}
             user_setting['success_setup'] = True
             user_setting['username'] = username
@@ -58,8 +59,6 @@ class Core:
         if not((userinfo['username'] == username) and (userinfo['password'] == password)):
             return False #login errro
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
-        if first == True:
-            self.Tutorial()
         return True
 
     def GetUserInfo(self):
@@ -80,41 +79,21 @@ class Core:
         #return "{}@{}:~${}".format(userinfo['username'], sysinfo['system_name'], self.command[0])
         return "{}@{}:{}$".format(userinfo['username'], sysinfo['system_name'], userinfo['currloc'])
 
+
     def ExecuteCommand(self, command):
-        if command == '':
-            return ''
-        self.command = command.split()
-        self.component['history'].append(command)
-        if self.command[0] in self.PossibleCommand:
-            output = self.PossibleCommand[self.command[0]](self.component, self.command)
+        if self.CheckTutorial == True:
+            pass
         else:
-            return " Command not found: {}".format(self.command[0])
-        return output
+            if command == '':
+                return ''
+            self.command = command.split()
+            self.component['history'].append(command)
+            if self.command[0] in self.PossibleCommand:
+                output = self.PossibleCommand[self.command[0]](self.component, self.command)
+            else:
+                return " Command not found: {}".format(self.command[0])
+            return output
 
     #gui 측면에서 Event를 가지려할 때 이 함수 호출
     def GetEvent(self):
         pass
-
-    #tutorial이 끝나야 success_setup이 true가 되게하자.
-    def Tutorial(self):
-        print("\nStart Tutorial For NewBie!")
-        print("\nFirst check your permission, plz input 'whoami'")
-        command = input(self.OutputDefault())
-        while command != 'whoami':
-            print("plz input 'whoami'")
-            command = input(self.OutputDefault())
-        output = self.cmfunc.whoami_func(self.component, command.split)
-        print('\n'+output+'\nCongratuation! this result is your current permission\n')
-
-        print("\nNext, print now location, plz input 'pwd'")
-        command = input(self.OutputDefault())
-        while command != 'pwd':
-            print("plz input 'pwd'")
-            command = input(self.OutputDefault())
-        output = self.cmfunc.pwd_func(self.component, command.split)
-        print('\n'+output+'\nCongratuation! this result is your current location'+'\n')
-
-        userinfo = self.component['userinfo']
-        print("\nFinished Tutorial Thanks {}! System give {} exp and {} money for you!".format(userinfo['username'], 200, 1000))
-        print("Enjoy Linux Command Game!\n")
-        return True
