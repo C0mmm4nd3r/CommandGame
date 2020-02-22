@@ -1,4 +1,3 @@
-from logging import loggy
 from anytree import Node, RenderTree
 import json
 from manage_dir import DirTree
@@ -81,26 +80,20 @@ class Core:
         #return "{}@{}:~${}".format(userinfo['username'], sysinfo['system_name'], self.command[0])
         return "{}@{}:{}$".format(userinfo['username'], sysinfo['system_name'], userinfo['currloc'])
 
-    def ExecuteCommand(self): #실행차으로 나누는거 말고 명령어에 해당하는 딕션을 따로 만들어야겠다.
+    def ExecuteCommand(self, command):
+        if command == '':
+            return ''
+        self.command = command.split()
+        self.component['history'].append(command)
         if self.command[0] in self.PossibleCommand:
             output = self.PossibleCommand[self.command[0]](self.component, self.command)
         else:
-            return "Command not found: {}".format(self.command[0])
+            return " Command not found: {}".format(self.command[0])
         return output
 
     #gui 측면에서 Event를 가지려할 때 이 함수 호출
     def GetEvent(self):
         pass
-
-
-    def Handler(self):
-        while True:
-            command = input(self.OutputDefault())
-            self.component['history'].append(command)
-            self.command = command.split()
-            print(self.ExecuteCommand())
-            #return self.ExecuteCommand()
-
 
     #tutorial이 끝나야 success_setup이 true가 되게하자.
     def Tutorial(self):

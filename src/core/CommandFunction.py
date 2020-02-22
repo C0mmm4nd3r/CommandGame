@@ -1,4 +1,3 @@
-from logging import loggy
 from anytree import Node, RenderTree
 from manage_dir import DirTree
 import datetime
