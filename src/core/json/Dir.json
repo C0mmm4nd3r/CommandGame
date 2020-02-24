@@ -110,5 +110,21 @@
 		"dir_type": "dir",
 		"parent": "/home/tuuna",
 		"content": "*"
+	},
+	"/home/tuuna/folder": {
+		"owner": "tuuna",
+		"crtime": "2020-02-24 19:37:39",
+		"modtime": "2020-02-24 19:37:39",
+		"dir_type": "dir",
+		"parent": "/home/tuuna",
+		"content": "*"
+	},
+	"/home/tuuna/file": {
+		"owner": "tuuna",
+		"crtime": "2020-02-24 19:45:31",
+		"modtime": "2020-02-24 19:45:31",
+		"dir_type": "file",
+		"parent": "/home/tuuna",
+		"content": ""
 	}
 }

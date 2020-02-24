@@ -19,6 +19,9 @@ class GameMaking(QMainWindow, Practice_UI):
         self.Accept.clicked.connect(self.AddQuest)
         self.Submit.clicked.connect(self.chkflag)
         self.pwd.setText(self.core.OutputDefault())
+        if self.core.CheckTutorial == True:
+            self.MsgBox('튜토리얼을 시작하겠습니다.')
+            self.Tutorial()
 
     def setUI(self):
         self.setupUi(self)
@@ -40,11 +43,33 @@ class GameMaking(QMainWindow, Practice_UI):
 
         #self.eventtree.itemClicked.connect(lambda : self.chkflag(sub_test))
 
+    def Tutorial(self):
+        try:
+            self.key = next(self.core.iter_TutoInfo)
+        except StopIteration:
+            self.MsgBox("축하합니다! 튜토리얼이 끝났습니다.")
+            userinfo = self.core.component['userinfo']
+            userinfo['success_setup'] = True
+            self.core.UserSave()
+            self.core.CheckTutorial = False
+        self.MsgBox(self.core.TutoInfo[self.key]['explanation'])
 
+    def MsgBox(self, output):
+        msgbox = QMessageBox(self)
+        msgbox.question(self, 'Tutorial', output, QMessageBox.Yes)
 
     def commandline(self):
         command = self.InputBox.text()
-        self.OutputBox.append(self.pwd.text()+command+self.core.ExecuteCommand(command))
+        if self.core.CheckTutorial == True:
+            output = self.core.Tutorial(command, self.core.TutoInfo[self.key])
+            if output != '':
+                self.MsgBox(self.core.TutoInfo[self.key]['reward'])
+                self.Tutorial()
+            else:
+                self.MsgBox("하하 틀렸단다\n"+self.core.TutoInfo[self.key]['explanation'])
+        else:
+            output = self.core.ExecuteCommand(command)
+        self.OutputBox.append(self.pwd.text()+command+output)
         self.InputBox.clear()
         self.pwd.setText(self.core.OutputDefault())
 

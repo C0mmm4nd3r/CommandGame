@@ -1,0 +1,37 @@
+{
+  "whoami":{
+      "explanation":"현재 접속된 유저의 권한을 보기 위해서는 'whoami' 명령어를 입력해주세요.",
+      "answer":"whoami",
+      "reward":"축하합니다! 명령어의 결과는 현재 로그인된 사용자의 권한을 출력합니다."
+  },
+  "ls":{
+      "explanation":"현재 위치한 곳에 있는 파일과 폴더 목록을 보고 싶다면 'ls' 명령어를 입력해주세요",
+      "answer":"ls",
+      "reward":"축하합니다! 츨력된 결과는 현재 위치한 곳의 파일과 폴더를 출력합니다."
+  },
+  "mkdir":{
+      "explanation":"폴더를 만들어볼까요? 'mkdir folder' 명령어를 입력하여 folder라는 폴더를 만들어보세요.",
+      "answer":"mkdir folder",
+      "reward":"축하합니다! 현재 디렉토리에서 folder라는 폴더가 만들어졌습니다!"
+  },
+  "touch":{
+      "explanation":"이번에는 파일을 만들어볼까요? 'touch file' 명령어를 입력하여 file이라는 파일을 만들어보세요.",
+      "answer":"touch file",
+      "reward":"축하합니다! 현재 디렉토리에서 file이라는 파일이 만들어졌습니다!"
+  },
+  "cd":{
+      "explanation":"tutorial이라는 폴더가 만들어져있습니다. 'cd tutorial'명령어를 입력하여 디렉토리에 진입해보세요.",
+      "answer":"cd tutorial",
+      "reward":"축하합니다! tutorial이라는 폴더에 접근하였습니다."
+  },
+  "pwd":{
+      "explanation":"현재 자신이 위치한 경로를 보고 싶다면 'pwd' 명령어를 입력하세요.",
+      "answer":"pwd",
+      "reward":"축하합니다! 명령어의 결과는 자신의 현재 경로를 출력합니다."
+  },
+  "tree":{
+      "explanation":"디렉토리와 파일을 tree형식으로 출력합니다. 'tree /' 명령어를 입력해보세요.",
+      "answer":"tree /",
+      "reward":"축하합니다! 명령어의 결과는 디렉토리를 tree구조로 출력합니다. tree 명령어의 첫번째 인자는 경로를 의미합니다. "
+  }
+}

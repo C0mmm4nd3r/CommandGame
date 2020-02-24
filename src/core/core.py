@@ -24,6 +24,7 @@ class Core:
             "ls":self.cmfunc.ls_func,
             'touch':self.cmfunc.touch_func,
             'cat':self.cmfunc.cat_func,
+            'whoami':self.cmfunc.whoami_func,
         }
         self.CheckTutorial = False
         self.TutorialList = {}
@@ -43,7 +44,7 @@ class Core:
         if self.userinfo['success_setup'] == False:
             self.CheckTutorial = True
             user_setting = {}
-            user_setting['success_setup'] = True
+            user_setting['success_setup'] = False
             user_setting['username'] = username
             user_setting['password'] = password
             user_setting['PossibleCommand'] = ["ls", "rm", "mkdir"]
@@ -52,7 +53,10 @@ class Core:
             user_setting['home_folder'] = "/home/"+username
             user_setting['currloc'] = "/home/"+username
             user_setting['permission'] = "tuuna"
-            with open('user.json', 'w', encoding='utf-8') as userdump:
+            with open('json/tutorial.json') as tutoJson:
+                self.TutoInfo = json.load(tutoJson)
+            self.iter_TutoInfo = iter(self.TutoInfo)#############33
+            with open('json/user.json', 'w', encoding='utf-8') as userdump:
                 json.dump(user_setting, userdump, indent='\t')
         self.GetUserInfo()
         userinfo = self.component['userinfo']
@@ -61,6 +65,10 @@ class Core:
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
         return True
 
+    def UserSave(self):
+        with open('json/user.json', 'w', encoding='utf-8') as userdump:
+            json.dump(self.component['userinfo'], userdump, indent='\t')
+
     def GetUserInfo(self):
         with open('json/user.json') as userJson:
             self.userinfo = json.load(userJson)
@@ -68,7 +76,7 @@ class Core:
             self.systeminfo = json.load(systemJson)
         with open('json/game_data.json') as gameJson:
             self.game_data = json.load(gameJson)
-        self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0, 'super_attacker':1}
+        self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0}
         self.history = []
         self.component = {'sysinfo':self.systeminfo, 'userinfo':self.userinfo, 'dirObj':self.dir, 'permission':self.permission, 'history':self.history}
         return True
@@ -80,19 +88,28 @@ class Core:
         return "{}@{}:{}$".format(userinfo['username'], sysinfo['system_name'], userinfo['currloc'])
 
 
-    def ExecuteCommand(self, command):
-        if self.CheckTutorial == True:
-            pass
+    def Tutorial(self, command, explain):
+        if command != explain['answer']:
+            return ''
         else:
-            if command == '':
-                return ''
             self.command = command.split()
-            self.component['history'].append(command)
             if self.command[0] in self.PossibleCommand:
                 output = self.PossibleCommand[self.command[0]](self.component, self.command)
             else:
                 return " Command not found: {}".format(self.command[0])
             return output
+
+
+    def ExecuteCommand(self, command):
+        if command == '':
+            return ''
+        self.command = command.split()
+        self.component['history'].append(command)
+        if self.command[0] in self.PossibleCommand:
+            output = self.PossibleCommand[self.command[0]](self.component, self.command)
+        else:
+            return " Command not found: {}".format(self.command[0])
+        return output
 
     #gui 측면에서 Event를 가지려할 때 이 함수 호출
     def GetEvent(self):

@@ -46,6 +46,8 @@ class CmFunc:
             full_path = userinfo['currloc']
         else:
             full_path = self.make_fullpath(userinfo, argument_list[1])
+        if full_path not in component['dirObj'].DirInfo:
+            return "Don't exist folder or file"
         return component['dirObj'].ls_dir(full_path)
 
     def pwd_func(self, component, argument_list):
@@ -168,7 +170,7 @@ ehter {} txqueuelen 100 (Ethernet)
 
     def whoami_func(self, component, argument_list):
         userinfo = component['userinfo']
-        return "your permission is {}".format(userinfo['permission'])
+        return "\nyour permission is {}".format(userinfo['permission'])
 
     def ps_func(self, component, argument_list):
         pass
