@@ -50,7 +50,7 @@ class GameMaking(QMainWindow, Practice_UI):
             self.MsgBox("축하합니다! 튜토리얼이 끝났습니다.")
             userinfo = self.core.component['userinfo']
             userinfo['setup'] = True
-            self.core.UserSave()
+            self.core.SaveData()
         self.MsgBox(self.core.TutoInfo[self.key]['explanation'])
 
     def MsgBox(self, output):
