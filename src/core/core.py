@@ -96,7 +96,7 @@ class Core:
             output = self.PossibleCommand[self.command[0]](self.component, self.command)
         else:
             return " Command not found: {}".format(self.command[0])
-        return output
+        return "\n"+output
 
     #gui 측면에서 Event를 가지려할 때 이 함수 호출
     def GetEvent(self):
