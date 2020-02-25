@@ -19,7 +19,7 @@ class GameMaking(QMainWindow, Practice_UI):
         self.Accept.clicked.connect(self.AddQuest)
         self.Submit.clicked.connect(self.chkflag)
         self.pwd.setText(self.core.OutputDefault())
-        if self.core.CheckTutorial == True:
+        if self.core.component['userinfo']['setup'] == False:
             self.MsgBox('튜토리얼을 시작하겠습니다.')
             self.Tutorial()
 
@@ -49,9 +49,8 @@ class GameMaking(QMainWindow, Practice_UI):
         except StopIteration:
             self.MsgBox("축하합니다! 튜토리얼이 끝났습니다.")
             userinfo = self.core.component['userinfo']
-            userinfo['success_setup'] = True
+            userinfo['setup'] = True
             self.core.UserSave()
-            self.core.CheckTutorial = False
         self.MsgBox(self.core.TutoInfo[self.key]['explanation'])
 
     def MsgBox(self, output):
@@ -60,7 +59,7 @@ class GameMaking(QMainWindow, Practice_UI):
 
     def commandline(self):
         command = self.InputBox.text()
-        if self.core.CheckTutorial == True:
+        if self.core.component['userinfo']['setup'] == False:
             output = self.core.Tutorial(command, self.core.TutoInfo[self.key])
             if output != '':
                 self.MsgBox(self.core.TutoInfo[self.key]['reward'])

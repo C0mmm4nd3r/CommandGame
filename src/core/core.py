@@ -27,7 +27,6 @@ class Core:
             'whoami':self.cmfunc.whoami_func,
         }
         self.CheckTutorial = False
-        self.TutorialList = {}
 
     def SaveData(self):
         with open('json/user.json', 'w', encoding='utf-8') as userdump:
@@ -41,21 +40,9 @@ class Core:
     def UserSetting(self, username, password):
         with open('json/user.json') as userJson:
             self.userinfo = json.load(userJson)
-        if self.userinfo['success_setup'] == False:
-            self.CheckTutorial = True
-            user_setting = {}
-            user_setting['success_setup'] = False
-            user_setting['username'] = username
-            user_setting['password'] = password
-            user_setting['PossibleCommand'] = ["ls", "rm", "mkdir"]
-            user_setting['exp'] = 0
-            user_setting['money'] = 0
-            user_setting['home_folder'] = "/home/"+username
-            user_setting['currloc'] = "/home/"+username
-            user_setting['permission'] = "tuuna"
-            with open('json/tutorial.json') as tutoJson:
-                self.TutoInfo = json.load(tutoJson)
-            self.iter_TutoInfo = iter(self.TutoInfo)#############33
+        if self.userinfo['setup'] == False:
+            #self.CheckTutorial = True
+            user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username }
             with open('json/user.json', 'w', encoding='utf-8') as userdump:
                 json.dump(user_setting, userdump, indent='\t')
         self.GetUserInfo()
@@ -65,11 +52,11 @@ class Core:
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
         return True
 
-    def UserSave(self):
-        with open('json/user.json', 'w', encoding='utf-8') as userdump:
-            json.dump(self.component['userinfo'], userdump, indent='\t')
 
     def GetUserInfo(self):
+        with open('json/tutorial.json') as tutoJson:
+            self.TutoInfo = json.load(tutoJson)
+        self.iter_TutoInfo = iter(self.TutoInfo)
         with open('json/user.json') as userJson:
             self.userinfo = json.load(userJson)
         with open('json/system.json') as systemJson:
