@@ -5,7 +5,7 @@ import json
 class DirTree:
     def __init__(self):
         try:
-            with open('json/Dir.json') as DirJson:
+            with open('json/Dir.json',encoding='utf-8') as DirJson:
                 self.DirInfo = json.load(DirJson)
         except IOError as err:
             print("Json Parsing Error")
@@ -53,7 +53,7 @@ class DirTree:
         with open('json/Dir.json', 'w',encoding='utf-8') as dump_json:
             json.dump(self.DirInfo, dump_json, indent="\t")
         #저장했으면 그 내용을 다시 불러온다.
-        with open('json/Dir.json') as DirJson:
+        with open('json/Dir.json',encoding='utf-8') as DirJson:
             self.DirInfo = json.load(DirJson)
         self.GetSavedDir()
         return True
@@ -66,7 +66,7 @@ class DirTree:
         return
 
     def CatDir(self, path):
-        return '\n'+self.DirInfo[path][content]
+        return '\n'+self.DirInfo[path]['content']
 
 # 삭제 후 저장
     def RmDir(self, full_path):

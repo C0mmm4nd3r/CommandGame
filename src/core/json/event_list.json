@@ -1,3 +1,42 @@
 {
-  "asd":12
+  "cature_the_first_flag":{
+    "explanation":"/home/{}/level1 디렉토리에 위치하는 flag.txt파일에 쓰인 flag값을 찾아내세요.",
+    "flag":"FLAG{Have_4_Go0d_T1m3_L1Nux_C0mM4nd_G4m3!}",
+    "reward":"400"
+  },
+  "log????":{
+    "explanation":"/log/access.log 파일에서 침입의 흔적이발견되었습니다. 침입에 쓰인 아이디와 아이피를 알아내세요. 형식 FLAG{아이디@아이피}",
+    "flag":"FLAG{gutte@192.172.123.213}",
+    "reward":"1000"
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  },
+  "":{
+    "explanation":"",
+    "flag":"",
+    "reward":""
+  }
 }

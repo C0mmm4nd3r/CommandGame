@@ -38,7 +38,7 @@ class Core:
 
     #first calling time
     def UserSetting(self, username, password):
-        with open('json/user.json') as userJson:
+        with open('json/user.json', encoding='utf-8') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['setup'] == False:
             #self.CheckTutorial = True
@@ -54,14 +54,14 @@ class Core:
 
 
     def GetUserInfo(self):
-        with open('json/tutorial.json') as tutoJson:
+        with open('json/tutorial.json',encoding='utf-8') as tutoJson:
             self.TutoInfo = json.load(tutoJson)
         self.iter_TutoInfo = iter(self.TutoInfo)
-        with open('json/user.json') as userJson:
+        with open('json/user.json',encoding='utf-8') as userJson:
             self.userinfo = json.load(userJson)
-        with open('json/system.json') as systemJson:
+        with open('json/system.json',encoding='utf-8') as systemJson:
             self.systeminfo = json.load(systemJson)
-        with open('json/game_data.json') as gameJson:
+        with open('json/game_data.json',encoding='utf-8') as gameJson:
             self.game_data = json.load(gameJson)
         self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0}
         self.history = []

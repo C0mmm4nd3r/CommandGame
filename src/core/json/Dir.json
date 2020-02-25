@@ -78,5 +78,13 @@
 		"dir_type": "dir",
 		"parent": "/home/tuuna",
 		"content": "*"
+	},
+	"/home/tuuna/tutorial/readme.md": {
+		"owner": "tuuna",
+		"crtime": "2020-02-25 22:37:42",
+		"modtime": "2020-02-25 22:37:42",
+		"dir_type": "file",
+		"parent": "/home/tuuna/tutorial",
+		"content": "FLAG{Have_4_Go0d_T1m3_L1Nux_C0mM4nd_G4m3!}"
 	}
 }
