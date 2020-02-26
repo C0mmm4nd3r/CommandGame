@@ -164,12 +164,26 @@
      <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
     </property>
    </widget>
+   <widget class="QPushButton" name="Refresh">
+    <property name="geometry">
+     <rect>
+      <x>420</x>
+      <y>40</y>
+      <width>75</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Refresh</string>
+    </property>
+   </widget>
    <zorder>OutputBox</zorder>
    <zorder>InputBox</zorder>
    <zorder>groupBox</zorder>
    <zorder>groupBox_2</zorder>
    <zorder>Accept</zorder>
    <zorder>pwd</zorder>
+   <zorder>Refresh</zorder>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>

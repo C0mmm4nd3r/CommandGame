@@ -7,7 +7,6 @@ from PyQt5.QtWidgets import *
 from PyQt5 import uic
 
 Practice_UI = uic.loadUiType('practice.ui')[0]
-flags = {0: "PyQt", 1: "바보"}
 
 class GameMaking(QMainWindow, Practice_UI):
     def __init__(self):
@@ -22,6 +21,8 @@ class GameMaking(QMainWindow, Practice_UI):
         if self.core.component['userinfo']['setup'] == False:
             self.MsgBox('튜토리얼을 시작하겠습니다.')
             self.Tutorial()
+        self.Refresh.clicked.connect(self.refreshQuest)
+        self.setFlag()
 
     def setUI(self):
         self.setupUi(self)
@@ -42,6 +43,14 @@ class GameMaking(QMainWindow, Practice_UI):
 
 
         #self.eventtree.itemClicked.connect(lambda : self.chkflag(sub_test))
+
+    def setFlag(self):
+        tmp = self.core.GetEvent()
+        self.Flag = {}
+        i = 0
+        for key in tmp:
+            self.Flag[i] = tmp[key]['flag']
+            i += 1
 
     def Tutorial(self):
         try:
@@ -87,9 +96,11 @@ class GameMaking(QMainWindow, Practice_UI):
 
     #flag 체크
     def chkflag(self):
-        if not(self.eventtree.currentItem().parent()):
+        if not(self.eventtree.currentItem()):
             return 0
-        if flags.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text():
+        elif not(self.eventtree.currentItem().parent()):
+            return 0
+        if self.Flag.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text():
             self.eventtree.currentItem().parent().setText(0, 'Clear!')
             self.eventtree.currentItem().setHidden(True)
             getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).clear()
@@ -101,14 +112,23 @@ class GameMaking(QMainWindow, Practice_UI):
 
         tmp = QTreeWidgetItem()
         sub_tmp = QTreeWidgetItem()
+        PosQ = self.core.GetEvent()
 
         setattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount()),QLineEdit())
-
+        
         tmp.setText(0,'Quest')
 
         tmp.addChild(sub_tmp)
         self.eventtree.setItemWidget(sub_tmp,0, getattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount())))
         self.root.addChild(tmp)
+
+    def refreshQuest(self):
+        self.eventtree.clear()
+        tmp = self.core.GetEvent()
+        for i in tmp:
+            self.AddQuest()
+
+
 
 if __name__ == "__main__" :
     app = QApplication(sys.argv)
