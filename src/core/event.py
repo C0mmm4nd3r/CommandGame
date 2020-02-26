@@ -20,7 +20,5 @@ class EventTrigger:
         return
 
     def compare_flag(self, component, flag):
-        pass
+        return self.PossibleEvent()
 
-    def delete_event(self, component):
-        pass
