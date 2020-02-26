@@ -1,0 +1,26 @@
+{
+	"design": {
+		"date": "2012-02-17",
+		"ip": "192.172.123.213"
+	},
+	"ftp": {
+		"date": "\tDon't Exist access record",
+		"ip": "*"
+	},
+	"daemon": {
+		"date": "\tDon't Exist access record",
+		"ip": "*"
+	},
+	"gdm": {
+		"date": "\tDon't Exist access record",
+		"ip": "*"
+	},
+	"mysql": {
+		"date": "\tDon't Exist access record",
+		"ip": "*"
+	},
+	"tuuna": {
+		"date": "2020-02-26 18:05:08",
+		"ip": "192.202.102.32"
+	}
+}

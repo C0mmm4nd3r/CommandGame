@@ -4,6 +4,7 @@ from manage_dir import DirTree
 from CommandFunction import CmFunc
 from event import EventTrigger
 from store import Store
+import datetime
 
 class Core:
     def __init__(self):
@@ -25,23 +26,26 @@ class Core:
             'touch':self.cmfunc.touch_func,
             'cat':self.cmfunc.cat_func,
             'whoami':self.cmfunc.whoami_func,
+            'lastlog':self.cmfunc.lastlog_func,
         }
-        self.CheckTutorial = False
+        self.event.PossibleEvent()
 
     def SaveData(self):
+        with open('json/sysuser.json', 'w', encoding='utf-8') as sysuserdump:
+            json.dump(self.sysuserinfo, sysuserdump, indent='\t')
         with open('json/user.json', 'w', encoding='utf-8') as userdump:
             json.dump(self.userinfo, userdump, indent='\t')
         with open('json/system.json', 'w', encoding='utf-8') as systemdump:
             json.dump(self.systeminfo, systemdump, indent='\t')
-        with open('json/game_data.json', 'w', encoding='utf-8') as gamedump:
-            json.dump(self.game_data, gamedump, indent='\t')
 
     #first calling time
     def UserSetting(self, username, password):
+        with open('json/sysuser.json', encoding='utf-8') as sysuserJson:
+            self.sysuserinfo = json.load(sysuserJson)
+        self.sysuserinfo[username] = {'date':datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),'ip':'192.202.102.32', }
         with open('json/user.json', encoding='utf-8') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['setup'] == False:
-            #self.CheckTutorial = True
             user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username }
             with open('json/user.json', 'w', encoding='utf-8') as userdump:
                 json.dump(user_setting, userdump, indent='\t')
@@ -50,7 +54,10 @@ class Core:
         if not((userinfo['username'] == username) and (userinfo['password'] == password)):
             return False #login errro
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
+        self.SaveData()
         return True
+
+
 
 
     def GetUserInfo(self):
@@ -61,11 +68,9 @@ class Core:
             self.userinfo = json.load(userJson)
         with open('json/system.json',encoding='utf-8') as systemJson:
             self.systeminfo = json.load(systemJson)
-        with open('json/game_data.json',encoding='utf-8') as gameJson:
-            self.game_data = json.load(gameJson)
         self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0}
         self.history = []
-        self.component = {'sysinfo':self.systeminfo, 'userinfo':self.userinfo, 'dirObj':self.dir, 'permission':self.permission, 'history':self.history}
+        self.component = {'sysinfo':self.systeminfo, 'userinfo':self.userinfo, 'dirObj':self.dir, 'permission':self.permission, 'history':self.history, 'sysuserinfo':self.sysuserinfo}
         return True
 
     def OutputDefault(self):
@@ -100,4 +105,4 @@ class Core:
 
     #gui 측면에서 Event를 가지려할 때 이 함수 호출
     def GetEvent(self):
-        pass
+        return self.event.PosEvent

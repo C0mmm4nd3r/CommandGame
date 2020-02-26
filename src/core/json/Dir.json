@@ -39,12 +39,12 @@
 		"parent": "/",
 		"content": "*"
 	},
-	"/log": {
+	"/var/log": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
 		"modtime": "2020 20:02:19",
 		"dir_type": "dir",
-		"parent": "/",
+		"parent": "/var",
 		"content": "*"
 	},
 	"/mail": {

@@ -176,7 +176,11 @@ ehter {} txqueuelen 100 (Ethernet)
         pass
 
     def lastlog_func(self, component, argument_list):
-        pass
+        sysuserinfo = component['sysuserinfo']
+        output = '\n{} \t{}\t\t{}'.format('계정', 'IP', "date")
+        for key in sysuserinfo:
+            output += '\n{}:\t{}\t{}'.format(key, sysuserinfo[key]['ip'], sysuserinfo[key]['date'])
+        return output
 
     def id_func(self, component, argument_list):
         pass
