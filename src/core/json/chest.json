@@ -1,0 +1,12 @@
+{
+  "White_Color":{
+    "sell":1500,
+    "type":"font",
+    "usage":true
+  },
+  "Black_BackGround":{
+    "sell":2500,
+    "type":"background",
+    "usage":true
+  }
+}

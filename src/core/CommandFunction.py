@@ -182,12 +182,14 @@ ehter {} txqueuelen 100 (Ethernet)
             output += '\n{}:\t{}\t{}'.format(key, sysuserinfo[key]['ip'], sysuserinfo[key]['date'])
         return output
 
-    def id_func(self, component, argument_list):
-        pass
-
     def mv_func(self, component, argument_list):
         pass
 
+# find command option
+# -owner : 소유권자 
+# -cdate : 생성 날짜 
+# -mdate : 수정 날짜 
+# -path : 경로
     def find_func(self, component, argument_list):
         pass
 
@@ -211,8 +213,5 @@ ehter {} txqueuelen 100 (Ethernet)
     def ufw_func(self, component, argument_list):
         pass
 
-    def who_func(self, component, argument_list):
-        pass
-
     def date_func(self, component, argument_list):
-        pass
+        return '\n'+datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")

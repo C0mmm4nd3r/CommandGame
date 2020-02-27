@@ -1,36 +1,36 @@
 {
-  "cature_the_first_flag":{
+  "capture_the_first_flag":{
     "explanation":"/home/{}/level1 디렉토리에 위치하는 flag.txt파일에 쓰인 flag값을 찾아내세요.",
     "flag":"FLAG{Have_4_Go0d_T1m3_L1Nux_C0mM4nd_G4m3!}",
-    "reward":"400",
+    "reward":400,
     "precede":"*",
     "status":false
   },
   "myip?":{
     "explanation":"ifconfig 명령어를 통해 서버의 IP를 찾으세요",
     "flag":"FLAG{192.202.102.32}",
-    "reward":"500",
+    "reward":500,
     "precede":"*",
     "status":false
   },
   "log????":{
     "explanation":"designer계정의 최근 접속 날짜와 아이피를 알아내세요. 형식 FLAG{날짜@아이피}",
     "flag":"FLAG{2012-02-17@192.172.123.213}",
-    "reward":"300",
+    "reward":300,
     "precede":"*",
     "status":false
   },
   "can_see_lastlog!":{
     "explanation":"서버에 등록된 계정중 현재 사용자가 사용하고 있는 계정과 특수한 목적을 가진 계정을 제외하고 접속기록이 있는 계정을 찾으세요.",
     "flag":"FLAG{designer}",
-    "reward":"400",
+    "reward":400,
     "precede":"log????",
     "status":false
   },
   "catch_criminal!":{
     "explanation":"designer 계정이 만들어낸 폴더와 파일을 조사하여 flag를 찾아내세요.",
     "flag":"FLAG{I_MAKE_BACKDOOR_USING_SUPER_PERMISSION}",
-    "reward":"500",
+    "reward":500,
     "precede":"can_see_lastlog!",
     "status":false
   },
@@ -44,35 +44,35 @@
   "port?":{
     "explanation":"backdoor가 사용하고 있는 포트를 찾으세요. FLAG{port number}",
     "flag":"FLAG{9002}",
-    "reward":"700",
+    "reward":700,
     "precede":"arrive_mail",
     "status":false
   },
   "catch_packet":{
     "explanation":"backdoor와 연결된 서버의 주소와 어떤 파일을 패킷을 캡쳐하여 보내는지에 대핸 경로를 찾으세요. FLAG{아이피@파일경로}",
     "flag":"FLAG{192.172.123.213@/boot/boot.log}",
-    "reward":"800",
+    "reward":800,
     "precede":"port?",
     "status":false
   },
   "kill_process":{
     "explanation":"backdoor 프로그램의 실행을 종료하세요.(프로그램 종료시 나오는 메시지가 정답)",
     "flag":"FLAG{BYE_BYE_MY_BACKDOOR}",
-    "reward":"900",
+    "reward":900,
     "precede":"catch_packet",
     "status":false
   },
   "down_port":{
     "explanation":"backdoor가 사용한 포트를 닫으세요. (포트를 닫을 시 정답이 출려됩니다.)",
     "flag":"FLAG{OH_MY_PORT}",
-    "reward":"1000",
+    "reward":1000,
     "precede":"kill_process",
     "status":false
   },
   "time???":{
     "explanation":"1992년 2월3일에 만들어진 파일의 이름을 알아내세요.",
     "flag":"FLAG{FIND_COMMAND_CAN_TIME???}",
-    "reward":"200",
+    "reward":200,
     "precede":"*",
     "status":false
   },

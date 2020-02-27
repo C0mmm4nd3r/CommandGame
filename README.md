@@ -15,12 +15,12 @@
 
 ## TODO List
 
- - [ ] Make Event List 
- - [ ] Modify Tutorial
+ - [x] Make Event List 
+ - [x] Modify Tutorial
  - [ ] Fix any bug
  - [ ] Add another player 
 
 ## Made By
 
-Kteaparty and tuuna(kissesy)
+KrTeaparty and tuuna(kissesy)
 
