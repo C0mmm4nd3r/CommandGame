@@ -126,18 +126,18 @@ class Core:
 
 #return True and False
     def BuyProduct(self, ItemName):
-        result = {1:'Success', 2:"Already", 3:"Don't exist Item", 4:"Lack of money", 5:"Usage ... get out"}
+        #result = {1:'Success', 2:"Already", 3:"Don't exist Item", 4:"Lack of money", 5:"Usage ... get out"}
         self.SaveData()
-        return result[self.store.Buy(self.component, ItemName)]
+        return self.store.Buy(self.component, ItemName)
 
 
     def SellProduct(self, ItemName):
-        result = {1:'Success', 2:"Don't exist Item"}
+        #result = {1:'Success', 2:"Don't exist Item"}
         self.SaveData()
-        return result[self.store.Sell(self.component, ItemName)]
+        return self.store.Sell(self.component, ItemName)
 
 
     def ProductUsage(self, ItemName):
-        result = {1:'Success', 2:"Don't exist Item"}
+        #result = {1:'Success', 2:"Don't exist Item"}
         self.SaveData()
-        return result[self.store.usage(self.component, ItemName)]
+        return self.store.usage(self.component, ItemName)

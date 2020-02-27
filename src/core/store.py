@@ -39,6 +39,7 @@ class Store:
         userinfo = component['userinfo']
         if ItemName not in self.chestinfo:
             return self.NotIn
+        #팔려던 아이템이 사용중이라면 
         if self.chestinfo[ItemName]['usage'] == True:
             return self.Usage
         userinfo['money'] += self.chestinfo[ItemName]['sell']
@@ -53,11 +54,12 @@ class Store:
         if ItemName not in self.chestinfo:
             return self.NotIn
         ItemType = self.chestinfo[ItemName]['type']
-        for key in self.chestinfo:
-            if (self.chestinfo[key]['usage'] == True) and (self.chestinfo[key]['type'] == ItemType):
-                self.chestinfo[key]['usage'] = False
-        self.chestinfo[ItemName]['usage'] = True
         userinfo = component['userinfo']
+        #이미 사용중인거 False으로 변경
+        usaged_name = userinfo[ItemType]
+        self.chestinfo[usaged_name]['usage'] = False
+        self.chestinfo[ItemName]['usage'] = True
+        #user.json에 사용할 아이템 타입에 맞는 아이템이름으로 변경
         userinfo[ItemType] = ItemName
         self.SaveData()
         return True
