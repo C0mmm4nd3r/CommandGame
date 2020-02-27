@@ -37,6 +37,7 @@ class Core:
             json.dump(self.userinfo, userdump, indent='\t')
         with open('json/system.json', 'w', encoding='utf-8') as systemdump:
             json.dump(self.systeminfo, systemdump, indent='\t')
+        self.GetUserInfo()
 
     #first calling time
     def UserSetting(self, username, password):
@@ -46,7 +47,7 @@ class Core:
         with open('json/user.json', encoding='utf-8') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['setup'] == False:
-            user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username }
+            user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username, 'background':Black_BackGround, 'font':White_Color }
             with open('json/user.json', 'w', encoding='utf-8') as userdump:
                 json.dump(user_setting, userdump, indent='\t')
         self.GetUserInfo()
@@ -56,8 +57,6 @@ class Core:
         self.cmfunc.mkdir_func(self.component, ['', userinfo['home_folder']])
         self.SaveData()
         return True
-
-
 
 
     def GetUserInfo(self):
@@ -103,6 +102,42 @@ class Core:
             return " Command not found: {}".format(self.command[0])
         return "\n"+output
 
-    #gui 측면에서 Event를 가지려할 때 이 함수 호출
+
     def GetEvent(self):
-        return self.event.PosEvent
+        return self.event.PossibleEvent()
+
+
+    def CompareFlag(self, key, userflag):
+        reward = self.event.compare_flag(key, userflag)
+        if reward != False:
+            self.component['userinfo']['money'] += reward
+            self.SaveData()
+            return True
+        else:
+            return False
+
+
+    def StoreProduct(self):
+        return self.store.InStore_ProductList()
+
+
+    def ChestProduct(self):
+        return self.store.InChest_ProductList()
+
+#return True and False
+    def BuyProduct(self, ItemName):
+        #result = {1:'Success', 2:"Already", 3:"Don't exist Item", 4:"Lack of money", 5:"Usage ... get out"}
+        self.SaveData()
+        return self.store.Buy(self.component, ItemName)
+
+
+    def SellProduct(self, ItemName):
+        #result = {1:'Success', 2:"Don't exist Item"}
+        self.SaveData()
+        return self.store.Sell(self.component, ItemName)
+
+
+    def ProductUsage(self, ItemName):
+        #result = {1:'Success', 2:"Don't exist Item"}
+        self.SaveData()
+        return self.store.usage(self.component, ItemName)
