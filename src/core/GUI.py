@@ -15,14 +15,13 @@ class GameMaking(QMainWindow, Practice_UI):
         super().__init__()
         self.setUI()
         self.InputBox.returnPressed.connect(self.commandline)
-        self.Accept.clicked.connect(self.AddQuest)
         self.Submit.clicked.connect(self.chkflag)
         self.pwd.setText(self.core.OutputDefault())
         if self.core.component['userinfo']['setup'] == False:
             self.MsgBox('튜토리얼을 시작하겠습니다.')
             self.Tutorial()
         self.Refresh.clicked.connect(self.refreshQuest)
-        self.setFlag()
+        self.setQuestName()
 
     def setUI(self):
         self.setupUi(self)
@@ -36,16 +35,16 @@ class GameMaking(QMainWindow, Practice_UI):
         self.setPalette(palette)
 
         opacity_effect = QGraphicsOpacityEffect(self.OutputBox)
-        opacity_effect.setOpacity(0.3)
+        opacity_effect.setOpacity(0.5)
         self.OutputBox.setGraphicsEffect(opacity_effect)
         self.OutputBox.setStyleSheet("background-color: black")
 
-    def setFlag(self):
+    def setQuestName(self):
         tmp = self.core.GetEvent()
-        self.Flag = {}
+        self.EventName = {}
         i = 0
         for key in tmp:
-            self.Flag[i] = tmp[key]['flag']
+            self.EventName[i] = key
             i += 1
 
     def Tutorial(self):
@@ -84,14 +83,14 @@ class GameMaking(QMainWindow, Practice_UI):
             return 0
         elif not(self.eventtree.currentItem().parent()):
             return 0
-        if self.Flag.get(self.root.indexOfChild(self.eventtree.currentItem().parent())) == getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text():
+        if self.core.CompareFlag(self.EventName[self.root.indexOfChild(self.eventtree.currentItem().parent())],getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text()):
             self.eventtree.currentItem().parent().setText(0, 'Clear!')
             self.eventtree.currentItem().setHidden(True)
             getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).clear()
             self.status.setText(str(int(self.status.text())+1))
 
     #Quest 추가
-    def AddQuest(self):
+    def AddQuest(self, Questname):
         self.root = self.eventtree.invisibleRootItem()
 
         tmp = QTreeWidgetItem()
@@ -100,17 +99,19 @@ class GameMaking(QMainWindow, Practice_UI):
 
         setattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount()),QLineEdit())
         
-        tmp.setText(0,'Quest')
+        tmp.setText(0,'{0}'.format(Questname))
 
         tmp.addChild(sub_tmp)
         self.eventtree.setItemWidget(sub_tmp,0, getattr(self, 'childLineEdit_{}'.format(self.eventtree.topLevelItemCount())))
         self.root.addChild(tmp)
 
+    #새로고침
     def refreshQuest(self):
         self.eventtree.clear()
         tmp = self.core.GetEvent()
         for i in tmp:
-            self.AddQuest()
+            if tmp[i]['status'] == False:
+                self.AddQuest(i)
 
 
 
