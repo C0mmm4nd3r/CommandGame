@@ -27,22 +27,18 @@ class GameMaking(QMainWindow, Practice_UI):
     def setUI(self):
         self.setupUi(self)
 
-        #OutputBox 배경설정
-        # qPixmapVar = QPixmap()
-        # qPixmapVar.load('lobto.png')
-        # qPixmapVar = qPixmapVar.scaledToWidth(140)
-        # self.label.setPixmap(qPixmapVar)
-
         self.status.setText('0')
 
-        #event관리 list ver
-        # self.eventlist.addItem('test1')
-        # self.eventlist.addItem('test2')
+        oImage = QImage('Background.jpg')
+        sImage = oImage.scaled(QSize(800,572))
+        palette = QPalette()
+        palette.setBrush(10,QBrush(sImage))
+        self.setPalette(palette)
 
-        #event관리 tree ver
-
-
-        #self.eventtree.itemClicked.connect(lambda : self.chkflag(sub_test))
+        opacity_effect = QGraphicsOpacityEffect(self.OutputBox)
+        opacity_effect.setOpacity(0.3)
+        self.OutputBox.setGraphicsEffect(opacity_effect)
+        self.OutputBox.setStyleSheet("background-color: black")
 
     def setFlag(self):
         tmp = self.core.GetEvent()
@@ -81,18 +77,6 @@ class GameMaking(QMainWindow, Practice_UI):
         self.InputBox.clear()
         self.pwd.setText(self.core.OutputDefault())
 
-
-
-# 리스트 flag체크
-
-#     def chk2(self):
-#         On_going = self.eventlist.currentRow()
-
-#         if self.flag.text() == flags.get(On_going):
-#             self.eventlist.currentItem().setHidden(True)
-#             self.status.setText(str(int(self.status.text())+1))
-
-#         self.flag.clear()
 
     #flag 체크
     def chkflag(self):
