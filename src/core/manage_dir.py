@@ -75,3 +75,25 @@ class DirTree:
         del self.DirNode[full_path]
         self.SaveDir()
         return
+
+    def Find_Owner(self, option, path):
+        output = ''
+        path = self.DirNode[path]
+        for pre, _, node in RenderTree(path):
+            if node.owner == option:
+                output += '\n'+ str(node.name)
+            else:
+                continue
+        return output
+
+
+    def Find_Name(self, option, path):
+        output = ''
+        path = self.DirNode[path]
+        for pre, _, node in RenderTree(path):
+            if node.name.split('/')[-1] == option:
+                output = "\n"+node.name
+            else:
+                continue 
+        return output
+            
