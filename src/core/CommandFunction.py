@@ -189,10 +189,29 @@ ehter {} txqueuelen 100 (Ethernet)
 # -owner : 소유권자 
 # -cdate : 생성 날짜 
 # -mdate : 수정 날짜 
+# -name : 파일 이름 
 # -path : 경로
     def find_func(self, component, argument_list):
-        pass
-
+        if len(argument_list) != 4:
+            return "find command need more argument, enter find -help"
+        if argument_list[1] == '-help':
+            return '''
+find [-Option] [Option argument] [Path]
+ex) find -owner tuuna /
+ex) find -name tutorial /
+'''
+        option_function = {'-owner':component['dirObj'].Find_Owner, '-name':component['dirObj'].Find_Name}
+        userinfo = component['userinfo']
+        full_path = self.make_fullpath(userinfo, argument_list[3])
+        if not(full_path in component['dirObj'].DirInfo):
+            return "Don't exist folder"
+        if component['dirObj'].DirInfo[full_path]['dir_type'] == 'file':
+            return "This is file"
+        try:
+            output = option_function[argument_list[1]](argument_list[2], full_path)
+        except KeyError:
+            return "option error..."
+        return output
     ## execl was maked binary
     def execl_func(self, component, argument_list):
         pass

@@ -27,6 +27,7 @@ class Core:
             'cat':self.cmfunc.cat_func,
             'whoami':self.cmfunc.whoami_func,
             'lastlog':self.cmfunc.lastlog_func,
+            'find':self.cmfunc.find_func,
         }
         self.event.PossibleEvent()
 
