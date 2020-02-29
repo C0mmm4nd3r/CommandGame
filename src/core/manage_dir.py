@@ -4,11 +4,8 @@ import json
 
 class DirTree:
     def __init__(self):
-        try:
-            with open('json/Dir.json',encoding='utf-8') as DirJson:
-                self.DirInfo = json.load(DirJson)
-        except IOError as err:
-            print("Json Parsing Error")
+         with open('json/Dir.json',encoding='utf-8') as DirJson:
+            self.DirInfo = json.load(DirJson)
         owner = self.DirInfo['/']['owner']
         crtime = self.DirInfo['/']['crtime']
         modtime = self.DirInfo['/']['modtime']
