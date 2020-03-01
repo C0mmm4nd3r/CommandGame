@@ -20,8 +20,8 @@
       "reward":"축하합니다!\n 현재 디렉토리에서 file이라는 파일이 만들어졌습니다!"
   },
   "cd":{
-      "explanation":"folder이라는 폴더가 만들어져있습니다. 'cd tutorial'명령어를 입력하여 디렉토리에 진입해보세요.",
-      "answer":"cd tutorial",
+      "explanation":"folder이라는 폴더가 만들어져있습니다. 'cd folder'명령어를 입력하여 디렉토리에 진입해보세요.",
+      "answer":"cd folder",
       "reward":"축하합니다!\n tutorial이라는 폴더에 접근하였습니다."
   },
   "pwd":{
