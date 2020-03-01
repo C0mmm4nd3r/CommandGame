@@ -31,7 +31,6 @@ class Core:
             'date':self.cmfunc.date_func,
             'help':self.cmfunc.help_func,
         }
-        self.event.PossibleEvent()
 
     def SaveData(self):
         with open('json/sysuser.json', 'w', encoding='utf-8') as sysuserdump:
@@ -50,7 +49,7 @@ class Core:
         with open('json/user.json', encoding='utf-8') as userJson:
             self.userinfo = json.load(userJson)
         if self.userinfo['setup'] == False:
-            user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username, 'background':Black_BackGround, 'font':White_Color }
+            user_setting = {'setup':False, 'username':username, 'password':password, 'money':0, 'home_folder':'/home/'+username, 'currloc':'/home/'+username, 'permission':username}
             with open('json/user.json', 'w', encoding='utf-8') as userdump:
                 json.dump(user_setting, userdump, indent='\t')
         self.GetUserInfo()
