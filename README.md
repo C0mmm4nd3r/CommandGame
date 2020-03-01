@@ -17,7 +17,7 @@
 
  - [x] Make Event List 
  - [x] Modify Tutorial
- - [ ] Fix any bug
+ - [x] Fix any bug
  - [ ] Add another player 
 
 ## Made By
