@@ -4,7 +4,7 @@ import json
 
 class DirTree:
     def __init__(self):
-         with open('json/Dir.json',encoding='utf-8') as DirJson:
+        with open('json/Dir.json',encoding='utf-8') as DirJson:
             self.DirInfo = json.load(DirJson)
         owner = self.DirInfo['/']['owner']
         crtime = self.DirInfo['/']['crtime']
@@ -90,6 +90,24 @@ class DirTree:
         for pre, _, node in RenderTree(path):
             if node.name.split('/')[-1] == option:
                 output = "\n"+node.name
+            else:
+                continue 
+        return output
+
+#date_time_obj = datetime.datetime.strptime('2020-10-20', '%Y-%m-%d')
+
+    def Find_Time(self, option, path):
+        output = ''
+        try:
+            option = datetime.datetime.strptime(option, '%Y-%m-%d')
+        except ValueError:
+            output = '\n'+"Please input Correct time..."
+            return output
+        path = self.DirNode[path]
+        for pre, _, node in RenderTree(path):
+            target = datetime.datetime.strptime(node.crtime.split()[0], '%Y-%m-%d')
+            if target == option:
+                output += '\n'+node.name
             else:
                 continue 
         return output

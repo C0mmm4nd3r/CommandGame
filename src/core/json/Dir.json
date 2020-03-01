@@ -2,7 +2,7 @@
 	"/": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "*",
 		"content": "*"
@@ -10,7 +10,7 @@
 	"/root": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": "*"
@@ -18,7 +18,7 @@
 	"/bin": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": ""
@@ -26,7 +26,7 @@
 	"/boot": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": "*"
@@ -34,7 +34,7 @@
 	"/var": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": "*"
@@ -42,49 +42,121 @@
 	"/var/log": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/var",
 		"content": "*"
 	},
+	"/var/log/auth.log": {
+		"owner": "user",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020-02-17 19:03:01",
+		"dir_type": "file",
+		"parent": "/var/log",
+		"content": "Invalid user designer from 192.172.123.213\ninput_userauth_request: invalid user designer [preauth]\npam_unix(sshd:auth): check pass; user unknown\npam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.172.123.213"
+	},
 	"/mail": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": "*"
+	},
+	"/mail/designer": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020-02-17 19:03:01",
+		"dir_type": "dir",
+		"parent": "/mail",
+		"content": "*"
+	},
+	"/mail/designer/receive": {
+		"owner": "root",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020-02-17 19:03:01",
+		"dir_type": "dir",
+		"parent": "/mail/designer",
+		"content": "*"
+	},
+	"/mail/designer/receive/hello_dear": {
+		"owner": "designer",
+		"crtime": "2020-02-17 19:03:01",
+		"modtime": "2020-02-17 19:03:01",
+		"dir_type": "file",
+		"parent": "/mail/designer/receive",
+		"content": "FLAG{/designer/backdoor/backdoor}"
 	},
 	"/home": {
 		"owner": "root",
 		"crtime": "2020-02-17 19:03:01",
-		"modtime": "2020 20:02:19",
+		"modtime": "2020-02-17 19:03:01",
 		"dir_type": "dir",
 		"parent": "/",
 		"content": "*"
 	},
-	"/home/tuuna": {
-		"owner": "tuuna",
+	"/home/designer": {
+		"owner": "designer",
+		"crtime": "2020-02-20 18:53:38",
+		"modtime": "2020-02-20 19:53:38",
+		"dir_type": "dir",
+		"parent": "/home",
+		"content": "*"
+	}, 
+	"/home/designer/flag.txt": {
+		"owner": "designer",
+		"crtime": "2020-02-20 19:53:38",
+		"modtime": "2020-02-20 19:53:38",
+		"dir_type": "file",
+		"parent": "/home/designer",
+		"content": "FLAG{I_MAKE_BACKDOOR_USING_SUPER_PERMISSION}"
+	},
+	"/home/designer/backdoor": {
+		"owner": "designer",
+		"crtime": "2020-02-20 20:53:38",
+		"modtime": "2020-02-20 20:53:38",
+		"dir_type": "dir",
+		"parent": "/home/designer",
+		"content": "*"
+	},
+	"/home/designer/backdoor/backdoor": {
+		"owner": "designer",
+		"crtime": "2020-02-20 21:53:38",
+		"modtime": "2020-02-20 21:53:38",
+		"dir_type": "file",
+		"parent": "/home/designer/backdoor",
+		"content": ""
+	},
+	"/home/welcome": {
+		"owner": "welcome",
+		"crtime": "2020-02-20 19:52:38",
+		"modtime": "2020-02-20 19:52:38",
+		"dir_type": "dir",
+		"parent": "/home",
+		"content": "*"
+	},
+	"/home/welcome/readme.md": {
+		"owner": "welcome",
+		"crtime": "2020-02-20 19:58:38",
+		"modtime": "2020-02-20 19:58:38",
+		"dir_type": "file",
+		"parent": "/home/welcome",
+		"content": "FLAG{Have_4_Go0d_T1m3_L1Nux_C0mM4nd_G4m3!}"
+	},
+	"/home/user": {
+		"owner": "user",
 		"crtime": "2020-02-20 19:53:38",
 		"modtime": "2020-02-20 19:53:38",
 		"dir_type": "dir",
 		"parent": "/home",
 		"content": "*"
 	},
-	"/home/tuuna/tutorial": {
-		"owner": "tuuna",
-		"crtime": "2020-02-21 00:26:10",
-		"modtime": "2020-02-21 00:26:10",
-		"dir_type": "dir",
-		"parent": "/home/tuuna",
-		"content": "*"
-	},
-	"/home/tuuna/tutorial/readme.md": {
-		"owner": "tuuna",
-		"crtime": "2020-02-25 22:37:42",
-		"modtime": "2020-02-25 22:37:42",
+	"/home/user/find_time.txt": {
+		"owner": "user",
+		"crtime": "1992-02-03 12:51:38",
+		"modtime": "1992-02-03 12:51:38",
 		"dir_type": "file",
-		"parent": "/home/tuuna/tutorial",
-		"content": "FLAG{Have_4_Go0d_T1m3_L1Nux_C0mM4nd_G4m3!}"
+		"parent": "/home/user",
+		"content": "FLAG{FIND_COMMAND_CAN_TIME???}"
 	}
 }

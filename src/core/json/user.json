@@ -1,9 +1,9 @@
 {
-	"setup": true,
-	"username": "tuuna",
+	"setup": false,
+	"username": "user",
 	"password": "1234",
 	"money": 0,
-	"home_folder": "/home/tuuna",
-	"currloc": "/home/tuuna",
-	"permission": "tuuna"
+	"home_folder": "/home/user",
+	"currloc": "/home/user",
+	"permission": "user"
 }

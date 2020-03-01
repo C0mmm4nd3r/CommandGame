@@ -20,7 +20,7 @@
       "reward":"축하합니다!\n 현재 디렉토리에서 file이라는 파일이 만들어졌습니다!"
   },
   "cd":{
-      "explanation":"tutorial이라는 폴더가 만들어져있습니다. 'cd tutorial'명령어를 입력하여 디렉토리에 진입해보세요.",
+      "explanation":"folder이라는 폴더가 만들어져있습니다. 'cd tutorial'명령어를 입력하여 디렉토리에 진입해보세요.",
       "answer":"cd tutorial",
       "reward":"축하합니다!\n tutorial이라는 폴더에 접근하였습니다."
   },
@@ -33,5 +33,15 @@
       "explanation":"디렉토리와 파일을 tree형식으로 출력합니다. 'tree /' 명령어를 입력해보세요.",
       "answer":"tree /",
       "reward":"축하합니다!\n 명령어의 결과는 디렉토리를 tree구조로 출력합니다. tree 명령어의 첫번째 인자는 경로를 의미합니다. "
-  }
+  },
+  "find":{
+        "explanation":"이번에는 파일이나 폴더를 특정 조건에 맞게 찾아봅시다. 'find -owner root /' 를 입력해보세요.",
+        "answer":"find -owner root /",
+        "reward":"축하합니다!\n 명령어의 결과는 특정 조건에 맞는 파일과 디렉토리를 출력합니다.  "
+    },
+    "help":{
+        "explanation":"이번에는 'help' 명령어를 입력해보세요.",
+        "answer":"help",
+        "reward":"축하합니다!\n 명령어의 결과는 현재 시스템에서 사용할 수 있는 명령어와 도움말을 제시합니다."
+    }
 }

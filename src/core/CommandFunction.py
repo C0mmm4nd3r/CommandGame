@@ -54,6 +54,7 @@ class CmFunc:
         userinfo = component['userinfo']
         return userinfo['currloc']
 
+#if cat root file input password 
     def cat_func(self, component, argument_list):
         if len(argument_list) != 2:
             return "cat command need one argument"
@@ -125,6 +126,28 @@ class CmFunc:
     def scp_func(self, component, argument_list):
         pass
 
+    def help_func(self, component, argument_list):
+        if len(argument_list) != 1:
+            return "Plz help command don't need argument"
+        output = '''
+[command guild line]
+/help : show command guild line.
+/find : if you need get detail plz input /find -help 
+/mkdir : make folder using one argument. 
+/touch : make fine using one argument.
+/cat : watch file content using one argument .
+/tree : list about folder and file like tree, may or may not have one argument.
+/ls : list folder and file, may or may not have one argument.
+/whoami : print my permission
+/date : print system date
+/rm : remove folder or file
+/lastlog : print user access log
+/cd : move my current location
+/ifconfig : print system interface and ip. etc...
+/clear : remove text in terminal
+/pwd : print current location
+'''
+        return output
 
     def ifconfig_func(self, component, argument_list):
         systeminfo = component['sysinfo']
@@ -199,8 +222,9 @@ ehter {} txqueuelen 100 (Ethernet)
 find [-Option] [Option argument] [Path]
 ex) find -owner tuuna /
 ex) find -name tutorial /
+ex) find -time 2020-10-20  /
 '''
-        option_function = {'-owner':component['dirObj'].Find_Owner, '-name':component['dirObj'].Find_Name}
+        option_function = {'-owner':component['dirObj'].Find_Owner, '-name':component['dirObj'].Find_Name, '-time':component['dirObj'].Find_Time}
         userinfo = component['userinfo']
         full_path = self.make_fullpath(userinfo, argument_list[3])
         if not(full_path in component['dirObj'].DirInfo):
@@ -212,6 +236,8 @@ ex) find -name tutorial /
         except KeyError:
             return "option error..."
         return output
+
+
     ## execl was maked binary
     def execl_func(self, component, argument_list):
         pass

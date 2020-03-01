@@ -11,7 +11,7 @@ Practice_UI = uic.loadUiType('practice.ui')[0]
 class GameMaking(QMainWindow, Practice_UI):
     def __init__(self):
         self.core = Core()
-        self.core.UserSetting('tuuna', '1234')
+        self.core.UserSetting('user', '1234')
         super().__init__()
         self.setUI()
         self.InputBox.returnPressed.connect(self.commandline)

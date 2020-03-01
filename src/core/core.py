@@ -28,6 +28,8 @@ class Core:
             'whoami':self.cmfunc.whoami_func,
             'lastlog':self.cmfunc.lastlog_func,
             'find':self.cmfunc.find_func,
+            'date':self.cmfunc.date_func,
+            'help':self.cmfunc.help_func,
         }
         self.event.PossibleEvent()
 
@@ -68,7 +70,7 @@ class Core:
             self.userinfo = json.load(userJson)
         with open('json/system.json',encoding='utf-8') as systemJson:
             self.systeminfo = json.load(systemJson)
-        self.permission = {self.userinfo['username']:0, 'root':2, 'attacker':0}
+        self.permission = {self.userinfo['username']:0, 'root':2, 'designer':0, 'welcome':0}
         self.history = []
         self.component = {'sysinfo':self.systeminfo, 'userinfo':self.userinfo, 'dirObj':self.dir, 'permission':self.permission, 'history':self.history, 'sysuserinfo':self.sysuserinfo}
         return True
