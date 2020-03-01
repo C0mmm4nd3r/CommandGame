@@ -108,6 +108,14 @@ class Core:
     def GetEvent(self):
         return self.event.PossibleEvent()
 
+    def StatusEvent(self):
+        NumberOf = self.event.StatusEvent()
+        return NumberOf
+
+    def GetMoney(self):
+        userinfo = self.component['userinfo']
+        return userinfo['money']
+
 
     def CompareFlag(self, key, userflag):
         reward = self.event.compare_flag(key, userflag)

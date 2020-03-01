@@ -2,7 +2,7 @@ import json
 
 class EventTrigger:
     def __init__(self):
-        pass
+        self.GetEvent()
 
     def GetEvent(self):
         with open('json/event_list.json', encoding='utf-8') as eventdump:
@@ -30,6 +30,13 @@ class EventTrigger:
             return self.AllEvent[key]['reward']
         else:
             return False
+
+    def StatusEvent(self):
+        count = 0
+        for key in self.AllEvent:
+            if self.AllEvent[key]['status'] == True:
+                count+=1 
+        return count
 
 
     def SaveEvent(self):

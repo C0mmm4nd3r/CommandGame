@@ -26,8 +26,8 @@ class GameMaking(QMainWindow, Practice_UI):
     def setUI(self):
         self.setupUi(self)
 
-        self.status.setText('0')
-        self.reward.setText('0')
+        self.status.setText(str(self.core.StatusEvent()))
+        self.reward.setText(str(self.core.GetMoney()))
 
         #배경 설정
         oImage = QImage('Background.jpg')
@@ -90,7 +90,9 @@ class GameMaking(QMainWindow, Practice_UI):
         if self.core.CompareFlag(self.EventName[self.root.indexOfChild(self.eventtree.currentItem().parent())],getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).text()):
             self.eventtree.currentItem().setHidden(True)
             getattr(self, 'childLineEdit_{}'.format(self.root.indexOfChild(self.eventtree.currentItem().parent()))).clear()
-            self.status.setText(str(int(self.status.text())+1))
+            self.status.setText(str(self.core.StatusEvent()))
+            self.reward.setText(str(self.core.GetMoney()))
+            #self.status.setText(str(int(self.status.text())+1))
             self.refreshQuest()
 
     #Quest 추가

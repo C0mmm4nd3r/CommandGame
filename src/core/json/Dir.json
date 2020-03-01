@@ -158,5 +158,21 @@
 		"dir_type": "file",
 		"parent": "/home/user",
 		"content": "FLAG{FIND_COMMAND_CAN_TIME???}"
+	},
+	"/home/user/folder": {
+		"owner": "user",
+		"crtime": "2020-03-01 17:41:27",
+		"modtime": "2020-03-01 17:41:27",
+		"dir_type": "dir",
+		"parent": "/home/user",
+		"content": "*"
+	},
+	"/home/user/file": {
+		"owner": "user",
+		"crtime": "2020-03-01 17:41:35",
+		"modtime": "2020-03-01 17:41:35",
+		"dir_type": "file",
+		"parent": "/home/user",
+		"content": ""
 	}
 }
